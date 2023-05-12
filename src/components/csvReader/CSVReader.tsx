@@ -1,5 +1,7 @@
 import { useCSVReader } from 'react-papaparse'
-import { UploadedResult } from './CSVReader.types'
+import { useDispatch } from 'react-redux'
+import { CSVData } from './CSVReader.types'
+import { setData } from '../../store/features/csvSlice'
 
 const styles = {
     csvReader: {
@@ -28,8 +30,10 @@ const styles = {
 
 const CSVReader = () => {
     const { CSVReader } = useCSVReader()
-    const handleUploadAccepted = ({ data }: UploadedResult) => {
+    const dispatch = useDispatch()
+    const handleUploadAccepted = ({ data }: CSVData) => {
         console.log(data)
+        dispatch(setData(data))
     }
 
     return (

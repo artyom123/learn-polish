@@ -1,3 +1,3 @@
-export interface UploadedResult {
+export interface CSVData {
     data: Array<[string, string]>
 }
