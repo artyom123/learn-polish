@@ -48,4 +48,4 @@ const CardContainer = () => {
 }
 
 CardContainer.displayName = 'CardContainer'
-export default React.memo(CardContainer)
+export default CardContainer

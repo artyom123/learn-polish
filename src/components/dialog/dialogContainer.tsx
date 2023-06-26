@@ -12,4 +12,4 @@ const DialogContainer = () => {
 }
 
 DialogContainer.displayName = 'DialogContainer'
-export default React.memo(DialogContainer)
+export default DialogContainer
