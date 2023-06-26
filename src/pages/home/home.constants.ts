@@ -1,4 +1,6 @@
-import Card from '../../components/card/CardContainer'
+import Card from '../../components/card/cardContainer'
+import Empty from '../../components/empty/empty'
+import Test from '../../components/testContent/testContentContainer'
 
 export enum TABS_TYPE {
     cards = 'cards',
@@ -12,10 +14,10 @@ export const TABS = {
     },
     [TABS_TYPE.learn]: {
         label: 'Заучивание',
-        component: Card,
+        component: Empty,
     },
     [TABS_TYPE.test]: {
         label: 'Тест',
-        component: Card,
+        component: Test,
     }
 }
