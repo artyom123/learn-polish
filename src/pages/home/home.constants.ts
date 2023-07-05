@@ -3,20 +3,20 @@ import Empty from '../../components/empty/empty'
 import Test from '../../components/testContent/testContentContainer'
 
 export enum TABS_TYPE {
-    cards = 'cards',
-    learn = 'learn',
-    test = 'test',
+    CARDS = 'cards',
+    LEARN = 'learn',
+    TEST = 'test',
 }
 export const TABS = {
-    [TABS_TYPE.cards]: {
+    [TABS_TYPE.CARDS]: {
         label: 'Карточки',
         component: Card,
     },
-    [TABS_TYPE.learn]: {
+    [TABS_TYPE.LEARN]: {
         label: 'Заучивание',
         component: Empty,
     },
-    [TABS_TYPE.test]: {
+    [TABS_TYPE.TEST]: {
         label: 'Тест',
         component: Test,
     }

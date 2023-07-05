@@ -1,10 +1,9 @@
 import React from 'react'
 import { useTheme } from '@mui/material/styles'
 import { useSelector } from 'react-redux'
-import { getRandomData } from '../../utils/randomData.utils'
 import { CSVData } from '../csvReader/csvReader.types'
 import { CardView } from './cardView'
-import type { RootState } from '../../store/store'
+import { RootState } from '../../store/store'
 
 const CardContainer = () => {
     const theme = useTheme()
@@ -29,8 +28,7 @@ const CardContainer = () => {
 
     React.useEffect(() => {
         if (csvData.length) {
-            console.log(getRandomData(csvData))
-            setData(getRandomData(csvData))
+            setData(csvData)
         }
     }, [csvData])
 

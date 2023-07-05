@@ -2,6 +2,8 @@ import React from 'react'
 import { useCSVReader } from 'react-papaparse'
 import { useDispatch } from 'react-redux'
 import { Box, Button, Typography } from '@mui/material'
+import { AMOUNT_WORDS } from '../../config/config.constants.ts'
+import RandomData from '../../utils/randomData.utils.ts'
 import { CSVData } from './csvReader.types'
 import { setData } from '../../store/features/csvSlice'
 import { classes } from './csvReader.styles'
@@ -12,7 +14,7 @@ const CSVReader = () => {
     const [isLoading, setIsLoading] = React.useState(false)
     const dispatch = useDispatch()
     const handleUploadAccepted = ({ data }: CSVData) => {
-        setUploadedData(data)
+        setUploadedData(RandomData.getNewArray(data, AMOUNT_WORDS))
         setIsLoading(true)
     }
 
@@ -27,6 +29,9 @@ const CSVReader = () => {
 
     return (
         <CSVReader
+            config={{
+                skipEmptyLines: true,
+            }}
             onUploadAccepted={handleUploadAccepted}
         >
             {({

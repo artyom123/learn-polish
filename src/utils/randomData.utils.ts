@@ -1,18 +1,30 @@
-export const generateRandomNumber = (min: number, max: number): number => Math.round(Math.random() * (max - min)) + min
-export const getRandomData = <T>(data: Array<T>, count = 20): Array<T> => {
-    const n = data.length - 1 > count ? count : data.length - 1
-    const min = 0
-    const max = data.length - 1
-    const map: Map<number, Array<T>> = new Map()
 
-    for (let i = 0; i < n;) {
-        const key = generateRandomNumber(min, max)
-
-        if (!map.has(key)) {
-            map.set(key, data[key] as Array<T>)
-            i++
-        }
+export default class RandomData {
+    private static generateKey(min: number, max: number): number {
+        return Math.round(Math.random() * (max - min - 1)) + min
     }
 
-    return Array.from(map.values()) as Array<T>
+    static getNewArray<T>(data: Array<T>, count: number): Array<T> {
+        const mixedData = this.mixArray([...data])
+        const n = mixedData.length - 1 > count ? count : mixedData.length - 1
+        const min = 0
+        const max = mixedData.length
+        const set: Set<Array<T>> = new Set()
+
+        for (let i = 0; i < n;) {
+            const key = this.generateKey(min, max)
+            const item = mixedData[key] as Array<T>
+
+            if (!set.has(item)) {
+                set.add(item)
+                i++
+            }
+        }
+
+        return [...set] as Array<T>
+    }
+
+    static mixArray<T>(data: Array<T>): Array<T> {
+        return data.sort(() => Math.random() - 0.5)
+    }
 }

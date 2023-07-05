@@ -1,6 +1,7 @@
 export const classes = {
     box: {
-        maxWidth: 400
+        maxWidth: 400,
+        margin: 'auto'
     },
     card: {
         marginBottom: '30px',

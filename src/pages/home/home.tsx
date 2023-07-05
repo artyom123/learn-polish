@@ -2,14 +2,15 @@ import React from 'react'
 import { Box, Tab } from '@mui/material'
 import { TabContext, TabList, TabPanel } from '@mui/lab'
 import { useSelector } from 'react-redux'
-import Dialog from '../../components/dialog/dialogContainer'
+import Dialog from '../../components/dialog/dialogContainer.tsx'
+import CSVReader from '../../components/csvReader/csvReader.tsx'
 import { RootState } from '../../store/store'
 import { TABS, TABS_TYPE } from './home.constants'
 import { RenderTabs } from './home.types'
 
 const Home = () => {
     const csvData = useSelector((state: RootState) => state.csv.data)
-    const [tabType, setTabType] = React.useState<TABS_TYPE>(TABS_TYPE.cards)
+    const [tabType, setTabType] = React.useState<TABS_TYPE>(TABS_TYPE.CARDS)
     const { renderTabs, renderTabsPanel } = Object.keys(TABS).reduce((acc, key) => {
         const Component = TABS[key as TABS_TYPE]?.component || <div>123</div>
 
@@ -39,7 +40,14 @@ const Home = () => {
                         </TabContext>
                     </Box>
                 ) : (
-                    <Dialog />
+                    <Dialog>
+                        <Dialog.Title title="Загрузите CSV"/>
+                        <Dialog.Content text="Пожалуйста, загрузите файл формата .CSV">
+                            <Dialog.Content.Action>
+                                <CSVReader />
+                            </Dialog.Content.Action>
+                        </Dialog.Content>
+                    </Dialog>
                 )
             }
         </>
