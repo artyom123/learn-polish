@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../store/store.ts'
+import { CardData } from '../booleanCard/booleanCard.types.ts'
 import { ResultData, RESULT_KEYS } from './testContent.types.ts'
 import { TestContentView } from './testContentView.tsx'
 import TestContainerService from './testContainer.sevice.ts'
@@ -8,7 +9,7 @@ import TestContainerService from './testContainer.sevice.ts'
 const TestContentContainer = () => {
     const csvData = useSelector((state: RootState) => state.csv.data)
     const [isDisabled, setIsDisabled] = React.useState(false)
-    const [cardData] = React.useState({
+    const [cardData] = React.useState<CardData>({
         [RESULT_KEYS.CARD]: TestContainerService.getBooleanCard(csvData),
         [RESULT_KEYS.CARD_MULTI]: TestContainerService.getBooleanCard(csvData, true),
     })
