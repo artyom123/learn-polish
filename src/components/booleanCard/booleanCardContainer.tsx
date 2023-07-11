@@ -1,10 +1,10 @@
 import React from 'react'
 import { ResultData, RESULT_KEYS } from '../testContent/testContent.types.ts'
-import { BooleanCardItem, CONDITION } from './booleanCard.types.ts'
+import { CardItem, CONDITION } from './booleanCard.types.ts'
 import { BooleanCardView } from './booleanCardView.tsx'
 
 interface BooleanCardContainerProps {
-    data: BooleanCardItem
+    data: CardItem
     onResult: React.Dispatch<React.SetStateAction<ResultData>>,
     isDisabled: boolean,
     isValidated?: boolean,

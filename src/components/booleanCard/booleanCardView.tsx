@@ -1,10 +1,10 @@
 import { Grid, Card, CardActions, CardContent, Divider, Typography } from '@mui/material'
 import { classes } from './booleanCard.styles.ts'
-import { BooleanCardItem, CONDITION } from './booleanCard.types.ts'
+import { CardItem, CONDITION } from './booleanCard.types.ts'
 import Button from '../button/buttonContainer.tsx'
 
 interface BooleanCardViewProps {
-    data: BooleanCardItem
+    data: CardItem
     isMulti: boolean
     isDisabled: boolean
     isValidated: boolean
