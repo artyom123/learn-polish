@@ -1,53 +1,51 @@
 import React from 'react'
 import BooleanCard from '../booleanCard/booleanCardContainer.tsx'
-import { Button, Container } from '@mui/material'
-import { BooleanCardData } from '../booleanCard/booleanCard.types.ts'
-import { RESULT_KEYS, ResultData } from './testContent.types.ts'
+import { Box, Button, Container, Divider, Typography } from '@mui/material'
+import { CardData } from '../booleanCard/booleanCard.types.ts'
+import { CARD_SECTIONS } from './testContent.constants.ts'
+import { ResultData } from './testContent.types.ts'
 
 interface TestContentViewProps {
-    booleanCardData: BooleanCardData,
-    booleanCardDataMulti: BooleanCardData,
+    cardData: CardData,
     onClickGetOutCome: VoidFunction,
     onResult:  React.Dispatch<React.SetStateAction<ResultData>>,
-    result: ResultData | NonNullable<unknown>,
+    result: ResultData,
     isDisabled: boolean,
 }
 
 export const TestContentView: React.FC<TestContentViewProps> = ({
-    booleanCardData,
-    booleanCardDataMulti,
+    cardData,
     onClickGetOutCome,
     onResult,
     result,
     isDisabled,
 }) => {
-    const renderBooleanCards = booleanCardData.map(
-        (data) => (
-            <BooleanCard
-                data={data}
-                onResult={onResult}
-                isDisabled={isDisabled}
-                isValidated={result?.[RESULT_KEYS.CARD]?.[data.key]}
-            />
+    const renderCardSections = CARD_SECTIONS.map(({ title, type }) => {
+        return (
+            <Box key={type} sx={{ mb: 10 }}>
+                <Typography gutterBottom variant="h5" component="div">
+                    {title}
+                </Typography>
+                <Divider sx={{ mb: 2 }}/>
+                {
+                    cardData[type].map((item) => (
+                        <BooleanCard
+                            key={item.key}
+                            data={item}
+                            onResult={onResult}
+                            isDisabled={isDisabled}
+                            isValidated={result[type][item.key]}
+                        />
+                    ))
+                }
+            </Box>
         )
-    )
-    const renderBooleanCardsMulti = booleanCardDataMulti.map(
-        (data) => (
-            <BooleanCard
-                data={data}
-                onResult={onResult}
-                isDisabled={isDisabled}
-                isValidated={result?.[RESULT_KEYS.CARD_MULTI]?.[data.key]}
-            />
-        )
-    )
+    })
 
 
     return (
         <Container maxWidth="sm">
-            {renderBooleanCards}
-            <span>----------</span>
-            {renderBooleanCardsMulti}
+            {renderCardSections}
             <Button
                 variant="contained"
                 color="primary"

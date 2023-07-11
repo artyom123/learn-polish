@@ -1,6 +1,9 @@
-name: Init action
-run-name: ${{ github.actor }} is INIT ACTION🚀
-on: [push]
+name: Deploy branch ${{ github.head_ref }}
+run-name: ${{ github.actor }} is INIT LINT🚀
+on:
+  push:
+    branches-ignore:
+      - master
 jobs:
   init:
     runs-on: ubuntu-latest

@@ -7,30 +7,24 @@ import TestContainerService from './testContainer.sevice.ts'
 
 const TestContentContainer = () => {
     const csvData = useSelector((state: RootState) => state.csv.data)
-    const [result, setResult] = React.useState<ResultData | NonNullable<unknown>>({})
     const [isDisabled, setIsDisabled] = React.useState(false)
-    const [booleanCardData] = React.useState(TestContainerService.getBooleanCard(csvData))
-    const [booleanCardDataMulti] = React.useState(TestContainerService.getBooleanCard(csvData, true))
+    const [cardData] = React.useState({
+        [RESULT_KEYS.CARD]: TestContainerService.getBooleanCard(csvData),
+        [RESULT_KEYS.CARD_MULTI]: TestContainerService.getBooleanCard(csvData, true),
+    })
+    const [result, setResult] = React.useState<ResultData>({
+        [RESULT_KEYS.CARD]: TestContainerService.getDataForResult(cardData[RESULT_KEYS.CARD]),
+        [RESULT_KEYS.CARD_MULTI]: TestContainerService.getDataForResult(cardData[RESULT_KEYS.CARD_MULTI]),
+    })
 
 
     const handleClickGetOutCome = () => {
         setIsDisabled(true)
     }
 
-    React.useEffect(() => {
-        if (!Object.keys(result).length && booleanCardData && booleanCardDataMulti) {
-            setResult(prev => ({
-                ...prev,
-                [RESULT_KEYS.CARD]: TestContainerService.getDataForResult(booleanCardData),
-                [RESULT_KEYS.CARD_MULTI]: TestContainerService.getDataForResult(booleanCardDataMulti),
-            }))
-        }
-    }, [booleanCardData, booleanCardDataMulti])
-
     return (
         <TestContentView
-            booleanCardData={booleanCardData}
-            booleanCardDataMulti={booleanCardDataMulti}
+            cardData={cardData}
             onClickGetOutCome={handleClickGetOutCome}
             onResult={setResult}
             result={result}
