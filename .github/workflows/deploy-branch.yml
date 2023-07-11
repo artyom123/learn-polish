@@ -1,5 +1,5 @@
 name: Deploy branch
-run-name: ${{ github.ref_name }} is 🚀
+run-name: ${{ github.head_ref }} is 🚀
 on:
   pull_request:
     branches-ignore:
