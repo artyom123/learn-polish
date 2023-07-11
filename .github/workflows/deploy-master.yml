@@ -1,5 +1,5 @@
-name: Deploy static content to Pages
-
+name: Deploy master
+run-name: Deploy static content to Pages 😼
 on:
   push:
     branches: ['main']

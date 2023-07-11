@@ -1,9 +1,9 @@
-name: Deploy branch ${{ github.head_ref }}
-run-name: ${{ github.actor }} is INIT LINT🚀
+name: Deploy branch
+run-name: The ${{ github.head_ref }} branch is 🚀
 on:
-  push:
+  pull_request:
     branches-ignore:
-      - master
+      - 'master'
 jobs:
   init:
     runs-on: ubuntu-latest
