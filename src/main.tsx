@@ -7,6 +7,9 @@ import App from './App'
 import { store } from './store/store'
 import { theme } from './theme/theme'
 
+// eslint-disable-next-line no-console
+console.log('=====================>>>> ', process.env.REACT_APP_TEST)
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
       <ThemeProvider theme={theme}>
