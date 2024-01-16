@@ -8,7 +8,7 @@ import { store } from './store/store'
 import { theme } from './theme/theme'
 
 // eslint-disable-next-line no-console
-console.log('=====================>>>> ', import.meta.env.VITE_REACT_APP_TEST)
+console.log('=====================>>>> ', process.env.VITE_REACT_APP_TEST)
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
