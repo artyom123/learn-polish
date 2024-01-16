@@ -31,8 +31,6 @@ jobs:
         run: npm run lint
       - name: Build
         run: npm run build
-        env:
-          REACT_APP_TEST: ${{ secrets.REACT_APP_TEST }}
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
@@ -40,5 +38,7 @@ jobs:
         with:
           path: './dist'
       - name: Deploy to GitHub Pages
+        env:
+          REACT_APP_TEST: ${{ secrets.REACT_APP_TEST }}
         id: deployment
         uses: actions/deploy-pages@v2
